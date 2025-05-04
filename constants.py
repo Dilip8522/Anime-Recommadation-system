@@ -1,0 +1,5 @@
+PAGE_HOME = "Home Page"
+PAGE_PROFILE = "Profile Page"
+PAGE_LOGOUT = "Logout"
+PAGE_WISHLIST = "Wishlist"
+PAGE_CATEGORY = "Categories"
