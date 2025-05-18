@@ -1,0 +1,64 @@
+
+
+
+/*-----------------AnimeDetails--------------*/
+.anime-details-container {
+  display: flex;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.anime-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.anime-image {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.anime-synopsis {
+  font-size: 1.125rem;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.rating-section {
+  margin-bottom: 1rem;
+}
+
+.rating-label {
+  display: block;
+  color: #4a5568;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.rating-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+}
+
+.like-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.375rem;
+  color: white;
+  background-color: blue; /* pink-500 */
+  cursor: pointer;
+}
+
+.like-button.liked {
+  background-color: #22c55e; /* green-500 */
+}

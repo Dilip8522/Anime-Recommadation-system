@@ -1,0 +1,111 @@
+/* Anime Section for Horizontal Scrolling */
+.anime-section {
+  margin-bottom: 2rem;
+}
+
+.anime-scroll {
+  display: flex;
+  overflow-x: auto; /* Makes it horizontally scrollable */
+  gap: 1rem; /* Space between anime cards */
+  padding: 10px 0;
+}
+
+.anime-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.anime-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.anime-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Public Anime List: Vertical Grid */
+.anime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the grid items per row */
+  gap: 1rem;
+  padding: 10px 0;
+}
+
+.anime-card {
+  flex-shrink: 0; /* Prevents shrinking of the anime cards */
+  width: 200px;   /* You can adjust the width as needed */
+  /* Add any additional card styling */
+}
+
+/* Pagination Button Styles */
+.page-button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.page-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+
+.home-container {
+  background-color: #0f0f1a;
+  min-height: 100vh;
+  padding: 2rem;
+  color: #ffffff;
+}
+
+.home-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #00ffff;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 10px #00ffff;
+  margin-bottom: 1rem;
+}
+
+.anime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.center-text {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.error-text {
+  color: #ff4d4d;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 1rem;
+}
+
+.page-button {
+  background-color: #00ffff;
+  border: none;
+  color: #0f0f1a;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.page-button:hover {
+  background-color: #00ccff;
+  box-shadow: 0 0 10px #00ffff;
+}
