@@ -14,7 +14,8 @@ from db.config import init_db
 import db.crud.anime_click_crud as acc
 import pandas as pd
 import fronted.user_profile as up
-# Initialize MongoDB connection
+import requests
+
 init_db()
 
 app = Flask(__name__)
@@ -449,8 +450,8 @@ def get_genre_data():
         email = ut.extract_email_from_jwt(token)
     else:
         return jsonify({"detail": "No token provided"}), 401
-    data = request.json
-    email = data.get('email')
+    # data = request.json
+    # email = data.get('email')
 
     if not email:
         return jsonify({'error': 'Email is required'}), 400
@@ -489,6 +490,36 @@ def get_genre_data():
 
     return jsonify({'bar_chart': bar_data, 'line_chart': line_data})
 
+CLIENT_ID = 'b7a04831f4e823107ea5e6f6cf79881d'
+
+def simplify_title(title):
+    import re
+    if not title:
+        return ''
+    title = title.lower()
+    title = re.sub(r'[:\-–—]', ' ', title)
+    title = re.sub(r'[^\w\s]', '', title)
+    title = re.sub(r'\s+', ' ', title)
+    return title.strip()
+
+@app.route('/search-anime', methods=['GET'])
+def search_anime():
+    query = request.args.get('q', '')
+    simplified_query = simplify_title(query)
+    url = f'https://api.myanimelist.net/v2/anime?q={simplified_query}&limit=3&fields=id,title,main_picture'
+
+    try:
+        headers = {'X-MAL-CLIENT-ID': CLIENT_ID}
+        response = requests.get(url, headers=headers, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+        if 'data' in data and len(data['data']) > 0:
+            return jsonify(data['data'][0]['node'])
+        else:
+            return jsonify({'error': 'No anime found'}), 404
+    except requests.exceptions.RequestException as e:
+        return jsonify({'error': str(e)}), 500
+
 # ------------------ TRACKING ------------------
 # @app.route('/track-click', methods=['POST'])
 # def track_click():
@@ -507,6 +538,44 @@ def get_genre_data():
 #     except Exception as e:
 #         return jsonify({"detail": str(e)}), 500
 
+# ----------------groq Api -------------------------------
+# from langchain_groq.chat_models import ChatGroq
+# from langchain.schema import HumanMessage
+
+# # Initialize the Groq chat model
+# groq_model = ChatGroq(
+#     model="llama-3.1-8b-instant",  # replace with your target Groq model
+#     temperature=0.7,              # adjust for more or less randomness
+#     max_tokens=512                # optional: cap generation length
+# )
+# # Send a single user message
+# response = groq_model([HumanMessage(content="Hello, how are you?")])
+# print(response.content)
+
+# @app.route('/anime/chatBot', methods=['GET'])
+# def content_based():
+#     try:
+#         token = request.headers.get('Authorization')
+#         if  ut.verify_jwt(token)==False:
+#             return jsonify({"detail": "Invalid token"}), 401
+#         if token:
+#             email = ut.extract_email_from_jwt(token)
+#         else:
+#             return jsonify({"detail": "No token provided"}), 401
+#         query = int(request.args.get('query'))
+#         age = request.args.get('age', None)
+#         age = int(age) if age is not None else None
+
+#         recs = srs.get_content_based_recommendations(anime_id, age, email)  # list of Series
+#         # convert each pandas Series -> dict
+#         # recs_list = [series.to_dict() for series in recs]
+#         print(type(recs))
+
+
+#         return jsonify({"recommendations": recs})
+#     except Exception as e:
+#         return jsonify({"detail": str(e)}), 500
+# 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   Groq key
 # ------------------ MAIN ------------------
 # if __name__ == "__main__":
 print("running")

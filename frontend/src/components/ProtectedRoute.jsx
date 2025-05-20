@@ -1,9 +1,8 @@
-// import React from "react";
-// import { Navigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
+import { authService } from '../services/auth';
 
-// const ProtectedRoute = ({ children }) => {
-//   const isAuthenticated = !!localStorage.getItem("token");
-//   return isAuthenticated ? children : <Navigate to="/login" />;
-// };
+export default function ProtectedRoute({ children }) {
+  const isAuth = authService.isAuthenticated();
+  return isAuth ? children : <Navigate to="/login" replace />;
+}
 
-// export default ProtectedRoute;

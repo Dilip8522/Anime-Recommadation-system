@@ -60,7 +60,7 @@ export const animeApi = {
 
   // ---- User Profile & Genre Data ----
   getProfile: () => api.get('/get-user-profile'),
-  getUserGenreData: (email) => api.post('/user/genre-data', { email })
+  getUserGenreData: (email) => api.post('/api/user/genre-data', { email })
 };
 
 // -------------------------------------------------------------
