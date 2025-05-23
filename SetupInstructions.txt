@@ -1,0 +1,20 @@
+1. comment the line number 16 in flaskApp.py file which is (import fronted.user_profile as up)
+
+2. consine_similarity.pkl file position should be after flaskApp.py
+
+3. open terminal (run one by one)
+
+	python -m pip install --user pipx
+	python -m pipx ensurepath
+	pipx install uv
+	uv venv .venv
+	.venv\Scripts\activate
+	uv pip install -r requirements.txt
+	python flaskApp.py (it starts backend and it will take time, wait until it shows connected mongodb 2 times)
+
+4. open another terminal for frontend
+	cd frontend
+	npm install
+	npm install recharts axios
+	npm start(it starts the frontend)
+	
