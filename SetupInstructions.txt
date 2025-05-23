@@ -1,3 +1,4 @@
+Download the cosine similarity file https://drive.google.com/file/d/1scBxd2_a2EQCzASnwxr_WIXzNXQhfmMQ/view?usp=drive_link
 1. comment the line number 16 in flaskApp.py file which is (import fronted.user_profile as up)
 
 2. consine_similarity.pkl file position should be after flaskApp.py
